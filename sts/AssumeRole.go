@@ -11,9 +11,7 @@ import (
 
 // AssumeRole sts 接口
 // https://help.aliyun.com/document_detail/28763.html?spm=5176.doc28761.6.680.DeKZzx
-func (s *StsClient) AssumeRole(accountID, roleName, roleSessionName, policy string) (*AssumeRole, error) {
-	roleArn := "acs:ram::" + accountID + ":role/" + roleName
-
+func (s *StsClient) AssumeRole(roleArn, roleSessionName, policy string) (*AssumeRole, error) {
 	s.SetAction(ACTION_ASSUMEROLE).
 		SetSignatureNonce(random.GenRandAphla(16)).
 		SetTimestamp(time.Now().UTC().Format("2006-01-02T15:04:05Z")).
